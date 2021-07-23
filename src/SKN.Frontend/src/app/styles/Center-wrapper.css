@@ -1,0 +1,25 @@
+   
+    /* Sign-in-up */
+.sign{
+    position: relative;
+    top:150px;
+}
+.sign a{
+    margin-left: 10px;
+}
+#recommend{
+    color:red;
+}
+.require{
+    color:red;
+    margin-left: 5px;
+}
+.form-group > i{
+    position: relative;
+    bottom:32px;
+    margin: 5px;
+    color:rgba(0, 0, 0, 0.507);
+}
+.form-group > input{
+   padding-left: 25px;
+}

@@ -1,0 +1,14 @@
+.left-menu ul{
+    list-style-type: none;
+}
+.left-menu ul li{
+    margin-bottom: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.left-menu ul li:hover{
+    color: rgba(0, 68, 255, 0.678);
+}
+a{
+    text-decoration: none;
+}

@@ -1,0 +1,31 @@
+.home .home-list{
+    list-style-type: none;
+    display: flex;
+    background-color: white;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    width:100%;
+    height: 55px;
+}
+.home .home-list li{
+    display: flex;
+    flex-direction: column;
+    margin-left: 100px;
+    cursor: pointer;
+    font-size: 20px;
+}
+.home-list-line{
+    content: '';
+    width: 100%;
+    height: 3px;
+    background-color: rgba(0, 0, 0, 0.89);
+    margin-top: 10px;
+    display: none;
+}
+.home .home-list li:hover .home-list-line{
+    display: inline;
+}
+.home-line-active{
+    display: inline;
+}
+

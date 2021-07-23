@@ -1,0 +1,95 @@
+/* Thông tin chung trên cùng*/
+.right-menu .TopInformation{
+    height: 300px;
+    margin-bottom: 2px;
+    background-color: #EEEEEE;
+}
+.right-menu .TopInformation ul{
+    width:80%;
+    height: 80%;
+    list-style-type: none;
+}
+.right-menu .TopInformation ul li{
+    width:45%;
+    height:30% ;
+    border:2px white solid;
+    margin-left: 80px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.right-menu .TopInformation ul li:nth-child(2n){
+   color:red;
+}
+.right-menu .TopInformation ul li:nth-child(2n+1){
+    color:green;
+ }
+.right-menu .TopInformation ul li p{
+   font-size: 25px;
+   font-weight: 40px;
+}
+.right-menu .TopInformation::after{
+    content: "";
+    width:100%;
+    height: 5px;
+    background-color: white;
+    display: table;
+}
+/* Nút tạo câu hỏi */
+.right-menu button{
+    background-color: rgba(0, 140, 255, 0.644);
+    color:white;
+    font-weight: 40px;
+    font-size: 25px;
+    width:80%;
+    height: 45px;
+    border-radius: 5px;
+    margin-bottom: 50px;
+    border-color:rgba(0, 140, 255, 0.644);
+    cursor: pointer;
+}
+.right-menu hr{
+    height: 3px;
+    background-color: white;
+    display: block;
+    border:1px white solid;
+    margin-top: -25px;
+}
+/* Ranking */
+.right-menu .Ranking{
+    height: auto;
+    margin-bottom: 2px;
+}
+.right-menu .Ranking hr{
+    height: 2px;
+    background-color: black;
+}
+.right-menu .Ranking > hr{
+    margin-top: 20px;
+}
+.right-menu .Ranking .Top-user{
+    display: flex;
+}
+.right-menu .Ranking .Top-user p{
+    font-size: 15px;
+    font-weight: 500;
+}
+.right-menu .Ranking img{
+    width:50px;
+    height: 50px;
+    margin-right: 20px;
+}
+.right-menu .Ranking .UserProfile{
+  display: flex;
+  margin-left: 25px;
+  margin-bottom: 15px;
+}
+.right-menu .Ranking .UserProfile .Name-point{
+    display: inline-block;
+    flex-direction: column;
+    margin-top:0px;
+}
+.right-menu .Ranking .UserProfile .Name-point p{
+    margin-top: 5px;
+    color:red;
+}
+
