@@ -3,6 +3,7 @@ import "../../app/styles/Header.css";
 // import { useContext } from "react";
 import LoginButton from "../common/button/LoginButton";
 import LogoutButton from "../common/button/LogoutButton";
+import { NavLink } from 'react-router-dom';
 // import { UserContext } from "./App.js";
 import { useStore } from '../stores/store';
 import { useAuth0 } from "@auth0/auth0-react";
@@ -12,7 +13,6 @@ export default function Header(props) {
   const { login } = userStore;
   const { user, isAuthenticated, isLoading } = useAuth0();
   if(isAuthenticated){
-    console.log("aaa",user);
     const loginAccount = {
       username: user.email, 
       password: "default",
@@ -21,13 +21,12 @@ export default function Header(props) {
       yearofbirth: 1790
     };
     login(loginAccount);
-    console.log("===",loginAccount);
   }
   return (
     <div className="header">
       <div className="header-wrapper" >
         <img 
-          src={process.env.PUBLIC_URL + "./images/Logo.png"}
+          src={"/images/Logo.png"}
           style={{ width: "50px", height: "50px" }}
           alt="Đây là logo"
         />
@@ -37,7 +36,7 @@ export default function Header(props) {
         <div className="header-wrapper-right">
           {isAuthenticated ? (
             <div>
-              <a
+              <NavLink to={`/user/${user.email}`}
                 style={{
                   display: "inline-block",
                   color: "wheat",
@@ -47,7 +46,7 @@ export default function Header(props) {
                 }}
               >
                 {user.email}
-              </a>
+              </NavLink>
               <LogoutButton />
             </div>
           ) : (

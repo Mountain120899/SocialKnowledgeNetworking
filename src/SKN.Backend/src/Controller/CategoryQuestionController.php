@@ -40,10 +40,10 @@
                     $response = $this->createCategoryQuestionFromRequest();
                     break;
                 case 'PUT':
-                    $response = $this->updateCategoryQuestionFromRequest($this->CategoryQuestionId);
+                    $response = $this->updateQuestionFromRequest($this->CategoryQuestionId);
                     break;
                 case 'DELETE':
-                    $response = $this->deleteCategoryQuestion($this->CategoryQuestionId);
+                    $response = $this->deleteQuestion($this->CategoryQuestionId);
                     break;
                 default:
                     $response = $this->notFoundResponse();
@@ -77,7 +77,6 @@
             $pos = strpos($CategoryQuestionId, '=');
             $field = substr($CategoryQuestionId, 0, $pos);
             $new_id = substr($CategoryQuestionId, $pos+1, strlen($CategoryQuestionId));
-
             $questionid_list = $this->CategoryQuestionGateway->findByRequest($field, $new_id);
             $question_list = array();
             foreach($questionid_list as $questid){

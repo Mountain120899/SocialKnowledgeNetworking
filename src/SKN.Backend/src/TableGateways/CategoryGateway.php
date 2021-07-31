@@ -33,12 +33,14 @@ class CategoryGateway
     public function find($id)
     {
         $statement = "
-        select	q.*,
+        select			DISTINCT
+				q.*,
         		count(a.id)	over(partition by q.id)	as AnswerCount,
                 c.category_name
         from	categoryquestion cq
                 inner join question q
         			on	q.id			= cq.question_id
+                    and q.status        = 1
         		left join category c
                     on	c.id			= cq.category_id
                 left outer join	answer a

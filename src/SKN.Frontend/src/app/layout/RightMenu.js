@@ -73,7 +73,7 @@ export function RankingComp({user}){
     return(
         <div className="Ranking">
             <div className="Top-user">
-                <img src={process.env.PUBLIC_URL + "./images/multy-user.png"} alt="Đây là multi user"/>
+                <img src={"/images/multy-user.png"} alt="Đây là multi user"/>
                 <p>Top user</p>
             </div>
             <hr/>
@@ -94,9 +94,9 @@ export function UserProfileComp({user}){
     return(
         <Container className="UserProfile" fuild>
             <Row>
-                <Col xs="0" style={{width:'50px','marginLeft':'-15px', 'marginRight':'10px'}} ><img src={process.env.PUBLIC_URL + "./images/default-user-icon.png"} alt="Đây là multy user"/></Col>
+                <Col xs="0" style={{width:'50px','marginLeft':'-15px', 'marginRight':'10px'}} ><img src={"/images/default-user-icon.png"} alt="Đây là multy user"/></Col>
                 <Col>
-                    <Row ><Navbar.Text variant="green" >{user.username}</Navbar.Text></Row>
+                    <Row ><Navbar.Text variant="green" ><a href={"/user/"+ user.username}>{user.username}</a></Navbar.Text></Row>
                     <Row>{user.final_point} Points</Row>
                 </Col>
             </Row>

@@ -38,7 +38,7 @@ export function BadgeCard(props){
         <Col>
             <Card style={{ margin: "5px",height:"150px" }} >
                 <Card.Header>
-                <img src={process.env.PUBLIC_URL + "./images/points.png"}
+                <img src="/images/points.png"
                                                     style={{ width: "24px", "vertical-align": "middle", height: "24px" }} ></img>
                     <span style={{ "vertical-align": "middle",marginLeft:"10px"}}>{props.item.point} Điểm</span>
                 </Card.Header>

@@ -1,36 +1,31 @@
 <?php
 namespace Src\Controller;
 
-use Src\TableGateways\UserGateway;
+use Src\TableGateways\SettingGateway;
 
-class UserController {
+class SettingController {
 
     private $db;
     private $requestMethod;
-    private $userId;
-    private $userQuery;
-    private $userGateway;
+    private $settingQuery;
+    private $settingGateway;
 
-    public function __construct($db, $requestMethod, $userId, $userQuery)
+    public function __construct($db, $requestMethod, $settingQuery)
     {
         $this->db = $db;
         $this->requestMethod = $requestMethod;
-        $this->userId = $userId;
-        $this->userQuery = $userQuery;
-        $this->userGateway = new UserGateway($db);
+        $this->settingQuery = $settingQuery;
+        $this->settingGateway = new SettingGateway($db);
     }
 
     public function processRequest()
     {
         switch ($this->requestMethod) {
             case 'GET':
-                $response = $this->getUser($this->userQuery);
-                break;
-            case 'POST':
-                $response = $this->createUserFromRequest();
+                $response = $this->getSetting($this->settingQuery);
                 break;
             case 'PUT':
-                $response = $this->updateUserFromRequest($this->userId);
+                $response = $this->updateSettingFromRequest();
                 break;
             default:
                 $response = $this->notFoundResponse();
@@ -42,41 +37,32 @@ class UserController {
         }
     }
 
-    private function getUser($query)
+    private function getSetting($query)
     {
-        $username = explode('=',$query[0]);
-        $result = $this->userGateway->find($username[1]);
-        if (! $result) {
+        $name = explode('=',$query[0]);
+        $resultArray = $this->settingGateway->find($name[1]);
+        if (! $resultArray) {
             return $this->notFoundResponse();
+        }
+        else {
+            $result = $resultArray[0];
         }
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = json_encode($result);
         return $response;
     }
 
-    private function createUserFromRequest()
+    private function updateSettingFromRequest()
     {
         $input = (array) json_decode(file_get_contents('php://input'), TRUE);
-        if (! $this->validateInput($input)) {
-            return $this->unprocessableEntityResponse();
-        }
-        $this->userGateway->insert($input);
-        $response['status_code_header'] = 'HTTP/1.1 201 Created';
-        $response['body'] = null;
-        return $response;
-    }
-
-    private function updateUserFromRequest($id)
-    {
-        $result = $this->userGateway->find($id);
+        $result = $this->settingGateway->find($input['setting_name']);
         if (! $result) {
             return $this->notFoundResponse();
         }
-        $input = (array) json_decode(file_get_contents('php://input'), TRUE);
         if (! $this->validateInput($input)) {
             return $this->unprocessableEntityResponse();
         }
-        $this->userGateway->update($id, $input);
+        $this->settingGateway->update($input['setting_name'],$input['setting_value']);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = null;
         return $response;
@@ -84,7 +70,7 @@ class UserController {
 
     private function validateInput($input)
     {
-        if (! isset($input['username']) && ! isset($input['password'])) {
+        if (! isset($input['setting_name']) && ! isset($input['setting_value'])) {
             return false;
         }
         return true;

@@ -35,21 +35,21 @@ class UserGateway
         }
     }
 
-    public function find($id)
+    public function find($username)
     {
         $statement = "
             SELECT 
                 *
             FROM
                 User
-            WHERE id = ?;
+            WHERE username = ?;
         ";
         
         try {
             $statement = $this->db->prepare($statement);
-            $statement->execute(array($id));
+            $statement->execute(array($username));
             $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
-            return $result;
+            return $result[0];
         } catch (\PDOException $e) {
             exit($e->getMessage());
         }
